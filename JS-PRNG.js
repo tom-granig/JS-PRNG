@@ -11,8 +11,8 @@ class PRNG {
         };
         this.seed = seed => {
             if (typeof seed === 'number') {
-                // set the genrator's state to the seed as it is a number
-                this.state = seed;
+                // set the generator's state to the seed as it is a number
+                this.state = (seed * 123456789 ^ seed * 987654321 << seed % 31); // make sure that a small change in seed value results in very different first numbers
             } else if (typeof seed === 'string') {
                 // hash the seed to get a numerical seed if it is a string
                 for (let i = 0; i < seed.length; i++) {
@@ -20,8 +20,6 @@ class PRNG {
                     this.state ^= code << (i % 4) * 8; // XOR all 32 bits with the 8 bits of "code" as "i" increments
                 }
             }
-            for (let i = 0; i < 4; i++)
-                this._step();
         };
         this.next = () => {
             this._step();
