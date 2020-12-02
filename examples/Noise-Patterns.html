@@ -1,0 +1,62 @@
+<!-- 
+    JS-PRNG DEMO - Noise Patterns
+    -------------------------------------
+    This demo uses JS-PRNG to set 
+    the brightnesses of each pixel 
+    on the canvas to a random value.
+    -------------------------------------
+    https://github.com/tom-granig/JS-PRNG
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./JS-PRNG.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #canvas {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    </style>
+    <title>JS-PRNG Demo - Noise Patterns</title>
+</head>
+
+<body>
+    <canvas id="canvas">No HTML5 Support</canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        let seed = 5647382910; // can be a string or a number
+        const generator = new PRNG(seed); // create a new generator object
+
+        // set up the canvas resolution to match the display resolution
+        canvas.width = window.innerWidth * window.devicePixelRatio;
+        canvas.height = window.innerHeight * window.devicePixelRatio;
+
+        const imageData = ctx.createImageData(canvas.width, canvas.height);
+
+        for (let i = 0; i < canvas.width * canvas.height; i++) {
+            const brightness = generator.nextBetween(0, 255); // get a "random" brightness value
+            // set the imageData's red, green and blue components to the brightness value
+            imageData.data[i * 4] = brightness;      // red
+            imageData.data[i * 4 + 1] = brightness;  // green
+            imageData.data[i * 4 + 2] = brightness;  // blue
+            imageData.data[i * 4 + 3] = 255;         // alpha
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+
+    </script>
+</body>
+
+</html>
