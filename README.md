@@ -13,7 +13,7 @@ console.log(generator.next()); // prints out "0.09082991071045399"
 console.log(generator.next()); // prints out "0.7935932422988117"
 ```
 ### Generate intergers in range [a, b]
-The nextBetween(a, b) function returns the next random integer between and including a and b.
+The `nextBetween(a, b)` function returns the next random integer between and including a and b.
 ```javascript
 // creates a new PRNG object an initializes it with the seed 324792302
 const generator = new PRNG(324792302);
@@ -30,7 +30,7 @@ console.log(generator.next()); // prints out "0.6785369706340134"
 console.log(generator.next()); // prints out "0.5506081636995077"
 ```
 ### Changing the seed
-The seed can be changed or reset without having to create a new PRNG object.
+The seed can be changed or reset with the `seed(seedValue)` function without having to create a new PRNG object.
 ```javascript
 // creates a new PRNG object an initializes it with the seed "hello world!"
 const generator = new PRNG('hello world!');
