@@ -1,0 +1,61 @@
+<!-- 
+    JS-PRNG DEMO - Noise Patterns - using getNoise1D(x)
+    -------------------------------------
+    This demo uses JS-PRNG to set 
+    the brightnesses of each pixel 
+    on the canvas to a random value.
+    -------------------------------------
+    https://github.com/tom-granig/JS-PRNG
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./JS-PRNG.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #canvas {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    </style>
+    <title>JS-PRNG Demo - Noise Patterns</title>
+</head>
+
+<body>
+    <canvas id="canvas">No HTML5 Support</canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        let seed = 31434332434; // can be a string or a number
+        const generator = new PRNG(seed); // create a new generator object
+
+        // set up the canvas resolution to match the display resolution
+        canvas.width = window.innerWidth * window.devicePixelRatio;
+        canvas.height = window.innerHeight * window.devicePixelRatio;
+
+        const imageData = ctx.createImageData(canvas.width, canvas.height);
+
+        for (let i = 0; i < canvas.width * canvas.height; i++) {
+            const brightness = generator.getNoise1D(i) * 256 // get a "random" value in the range [0, 1) based on i, multiply it by 256 to get it in the range [0, 256)
+            // set the imageData's red, green and blue components to the brightness value
+            imageData.data[i * 4] = brightness;      // red
+            imageData.data[i * 4 + 1] = brightness;  // green
+            imageData.data[i * 4 + 2] = brightness;  // blue
+            imageData.data[i * 4 + 3] = 255;         // alpha
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+    </script>
+</body>
+
+</html>
