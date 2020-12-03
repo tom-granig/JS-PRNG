@@ -1,5 +1,5 @@
 # JS-PRNG v0.2.1
-JS-PRNG is a small pseudorandom number generator written in JavaScript that can be used to generate any number of seemingly random numbers based on the given initial seed value and other inputs. Both numbers and strings are supported as valid seed values. The distribution of the random numbers is very uniform.
+JS-PRNG is a small pseudorandom number generator written in JavaScript that can be used to generate any number of seemingly random numbers based on the given initial 32-bit seed value and other inputs. Both numbers and strings are supported as valid seed values. It uses XOR operations as well as bit-shift operations to achieve pseudorandomness. The distribution of the random numbers is very uniform.
 
 DEMO nextBetween(): https://tom-granig.github.io/JS-PRNG/examples/Noise-Patterns.html<br>
 DEMO getNoise1D(x): https://tom-granig.github.io/JS-PRNG/examples/Noise-Patterns-getNoise1D.html<br>
