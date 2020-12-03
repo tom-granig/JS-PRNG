@@ -73,16 +73,16 @@ One dimensional noise bases its "random" value on a single input, x, as well as 
 // creates a new PRNG object and initializes it with the seed "a seed":
 const generator = new PRNG('a seed');
 // the same value is produced with the same input and seed:
-console.log(generator.getNoise1D(12)); // prints out "0.963855039793998"
-console.log(generator.getNoise1D(12)); // prints out "0.963855039793998"
+console.log(generator.getNoise1D(12)); // prints out "0.3391361958347261"
+console.log(generator.getNoise1D(12)); // prints out "0.3391361958347261"
 
 // a different value is produced with a different input:
-console.log(generator.getNoise1D(13)); // prints out "0.3827940900810063"
-console.log(generator.getNoise1D(12)); // prints out "0.963855039793998"
+console.log(generator.getNoise1D(13)); // prints out "0.40557587472721934"
+console.log(generator.getNoise1D(12)); // prints out "0.3391361958347261"
 
 generator.seed('a new seed'); // updates the generator's seed to "a new seed"
 // although the input, 13, is the same, due to the different seed value, a different value is generated:
-console.log(generator.getNoise1D(13)); // prints out "0.15186010906472802"
+console.log(generator.getNoise1D(13)); // prints out "0.6760188862681389"
 
 ```
 
@@ -92,15 +92,15 @@ Two dimensional noise bases its "random" value on two inputs, x and y, as well a
 // creates a new PRNG object and initializes it with the seed "a seed":
 const generator = new PRNG('a seed');
 // the same value is produced with the same inputs and seed:
-console.log(generator.getNoise2D(100, 200)); // prints out "0.9097003196366131"
-console.log(generator.getNoise2D(100, 200)); // prints out "0.9097003196366131"
+console.log(generator.getNoise2D(100, 200)); // prints out "0.6134800035506487"
+console.log(generator.getNoise2D(100, 200)); // prints out "0.6134800035506487"
 
 // a different value is produced with different inputs:
-console.log(generator.getNoise2D(101, 200)); // prints out "0.1300275125540793"
-console.log(generator.getNoise2D(100, 200)); // prints out "0.9097003196366131"
+console.log(generator.getNoise2D(101, 200)); // prints out "0.14556610770523548"
+console.log(generator.getNoise2D(100, 200)); // prints out "0.6134800035506487"
 
 generator.seed('a new seed'); // updates the generator's seed to "a new seed"
 // although the inputs, 101 and 200, are the same, due to the different seed value, a different value is generated:
-console.log(generator.getNoise2D(101, 200)); // prints out "0.15978041803464293"
+console.log(generator.getNoise2D(101, 200)); // prints out "0.4730283385142684"
 
 ```
