@@ -1,5 +1,5 @@
 /*
-    JS-PRNG v0.2.1 - 12/3/2020
+    JS-PRNG v0.2.2 - 12/3/2020
     https://github.com/tom-granig/JS-PRNG
 */
 
@@ -56,10 +56,9 @@ class PRNG {
         this.state = this.start_seed; // reset the generator's state
     }
 
-    // NOTE: getNoise1D() does not produce equivelent values to next()
     getNoise1D(x) { // get noise in range [0, 1) from 1 dimension, x.
         x = x == 0 ? 2 ** 31 : x; // inputs should not be 0
-        x = (x * 16148168401 ^ x * 305175781 << x % 31) * this.start_seed;
+        x = (x * 16148168401 ^ x * 305175781 << x % 31) ^ this.start_seed;
         x = x & ~(1 << 31); // remove leading 1 with a mask
 
         x ^= ((this.start_seed ^ x) >> 7);
@@ -68,12 +67,11 @@ class PRNG {
         return x / (2 ** 31);
     }
 
-    // NOTE: getNoise2D() does not produce equivelent values to next()
     getNoise2D(x, y) { // get noise in range [0, 1) from 2 dimensions, x and y.
         x = x == 0 ? 2 ** 31 : x; // inputs should not be 0
         y = y == 0 ? 2 ** 31 : y;
-        x = (x * 16148168401 ^ x * 305175781 << x % 31) * this.start_seed;
-        y = (y * 16148168401 ^ y * 305175781 << y % 31) * this.start_seed;
+        x = (x * 16148168401 ^ x * 305175781 << x % 31) ^ this.start_seed;
+        y = (y * 16148168401 ^ y * 305175781 << y % 31) ^ this.start_seed;
         x = x & ~(1 << 31); // remove leading 1 with a mask
         y = y & ~(1 << 31); // remove leading 1 with a mask
 
@@ -83,6 +81,6 @@ class PRNG {
 
         return x / (2 ** 31);
     }
-
+    
     // TODO: Add getNoise3D(x, y, z) function
 };
