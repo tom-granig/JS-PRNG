@@ -69,6 +69,8 @@ console.log(generator.next()); // prints out "0.934757471550256"
 
 ### Getting 1D and 2D noise values in the range [0, 1)
 One dimensional and two dimensional based noise values can be obtained with the functions `getNoise1D(x)` and `getNoise2D(x, y)`, where if the same x and y values are supplied, and the initial seed value is the same, the same noise value will always be generated. Using `next()` and `nextBetween()` will not affect the values these functions produce.
+<br>Note: This does not return smoothed noise, you could interpolate it or use perlin or simplex noise.
+<br>Example: https://tom-granig.github.io/JS-PRNG/examples/Noise-Patterns-getNoise2D.html
 
 #### 1D noise
 One dimensional noise bases its "random" value on a single input, x, as well as the seed value.
