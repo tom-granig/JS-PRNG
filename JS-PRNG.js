@@ -1,5 +1,5 @@
 /*
-    JS-PRNG v0.2.2 - 12/3/2020
+    JS-PRNG v0.2.3 - 12/3/2020
     https://github.com/tom-granig/JS-PRNG
 */
 
@@ -61,8 +61,8 @@ class PRNG {
         x = (x * 16148168401 ^ x * 305175781 << x % 31) ^ this.start_seed;
         x = x & ~(1 << 31); // remove leading 1 with a mask
 
-        x ^= ((this.start_seed ^ x) >> 7);
-        x ^= ((this.start_seed ^ x) << 9);
+        x ^= ((this.start_seed ^ (x * x)) >> 7);
+        x ^= ((this.start_seed ^ (x * x)) << 9);
         x ^= ((this.start_seed ^ x) >> 13);
         return x / (2 ** 31);
     }
